@@ -118,6 +118,22 @@ void main() {
       expect(optional.isEmpty, true);
     },
   );
+
+  test('removes credentials successfully', () async {
+    when(() {
+      return mockKeyValueStore.remove(
+        KeyValueStoreAuthorizationProvider.keyValueStoreKey,
+      );
+    }).thenAnswer((_) async {});
+
+    await keyValueStoreAuthorizationProvider.removeCredentials();
+
+    verify(() {
+      return mockKeyValueStore.remove(
+        KeyValueStoreAuthorizationProvider.keyValueStoreKey,
+      );
+    }).called(1);
+  });
 }
 
 class MockKeyValueStore extends Mock implements KeyValueStore {}

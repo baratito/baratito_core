@@ -1,7 +1,10 @@
+import 'package:result_type/result_type.dart';
+
 import 'package:baratito_core/src/auth/domain/domain.dart';
-import 'package:optional/optional.dart';
+import 'package:baratito_core/src/shared/shared.dart';
 
 abstract class AuthorizationRepository {
   Future<void> saveCredentials(AuthorizationCredentials credentials);
-  Future<Optional<AuthorizationCredentials>> getCredentials();
+  Future<Result<AuthorizationCredentials, ApplicationFailure>> getCredentials();
+  Future<void> removeCredentials();
 }

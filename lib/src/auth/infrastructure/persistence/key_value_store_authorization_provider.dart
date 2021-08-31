@@ -44,4 +44,9 @@ class KeyValueStoreAuthorizationProvider implements LocalAuthorizationProvider {
 
     return Optional.of(credentials);
   }
+
+  @override
+  Future<void> removeCredentials() {
+    return _keyValueStore.remove(keyValueStoreKey);
+  }
 }

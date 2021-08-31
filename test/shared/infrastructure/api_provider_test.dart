@@ -1,5 +1,4 @@
 import 'package:mocktail/mocktail.dart';
-import 'package:optional/optional.dart';
 import 'package:test/test.dart';
 
 import 'package:baratito_core/src/shared/shared.dart';

@@ -13,7 +13,7 @@ GetIt setUpCoreDependencies(String environment) {
   );
 }
 
-abstract class DependencyInjectionEnvironment {
+abstract class Environment {
   static const mobile = 'mobile';
   static const web = 'web';
 }

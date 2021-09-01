@@ -17,6 +17,7 @@ dependencies:
   result_type: ^0.1.0
 
 dev_dependencies:
+  bloc_test: ^8.1.0
   build_runner: ^2.1.1
   injectable_generator:
     git:

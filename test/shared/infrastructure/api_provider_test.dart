@@ -31,7 +31,7 @@ void main() {
 
   test('getById() returns expected model', () async {
     final modelId = 'model-id';
-    final uri = Uri.dataFromString(
+    final uri = Uri.parse(
       'https://api.baratito.app/api/test/$modelId/',
     );
     final serializedModel = {'id': modelId};

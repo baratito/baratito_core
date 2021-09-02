@@ -23,7 +23,7 @@ class ApiProvider<M extends Model> {
   String get resourceUrl => '${_apiBaseUrl.url}${_apiEndpoint.endpoint}';
 
   Future<M> getById(String id) async {
-    final uri = Uri.dataFromString('$resourceUrl$id/');
+    final uri = Uri.parse('$resourceUrl$id/');
     final headers = await _getAuthorizationHeaders();
     final response = await _apiClient.get(uri, headers: headers);
     final model = _modelSerializer.fromMap(response);

@@ -26,8 +26,9 @@ void main() {
     );
   });
 
+  final headers = {'Content-Type': 'application/json'};
   final endpoint = 'https://api.baratito.app/api/login/';
-  final uri = Uri.dataFromString(endpoint);
+  final uri = Uri.parse(endpoint);
 
   final authenticationCredentials = SocialAuthenticationCredentials(
     token: 'social-token',
@@ -62,7 +63,13 @@ void main() {
     ).thenAnswer((_) => authenticationCredentialsMap);
 
     when(
-      () => mockApiClient.post(uri, body: authenticationCredentialsMap),
+      () {
+        return mockApiClient.post(
+          uri,
+          body: authenticationCredentialsMap,
+          headers: headers,
+        );
+      },
     ).thenAnswer((_) async => expectedCredentialsMap);
 
     when(
@@ -85,7 +92,13 @@ void main() {
     ).called(1);
 
     verify(
-      () => mockApiClient.post(uri, body: authenticationCredentialsMap),
+      () {
+        return mockApiClient.post(
+          uri,
+          body: authenticationCredentialsMap,
+          headers: headers,
+        );
+      },
     ).called(1);
 
     verify(

@@ -7,3 +7,5 @@ export 'exceptions.dart';
 export 'http_client.dart';
 export 'key_value_store.dart';
 export 'model_serializer.dart';
+export 'preferences_key_value_store.dart';
+export 'shared_preferences.dart';

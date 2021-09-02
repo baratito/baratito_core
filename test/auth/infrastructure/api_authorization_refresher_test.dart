@@ -20,8 +20,9 @@ void main() {
     );
   });
 
+  final headers = {'Content-Type': 'application/json'};
   final endpoint = 'https://api.baratito.app/api/refresh_token/';
-  final uri = Uri.dataFromString(endpoint);
+  final uri = Uri.parse(endpoint);
 
   final expiredAccessToken = 'expired-token';
   final expiredCredentialsRefreshToken = 'expired-credentials-refresh-token';
@@ -60,15 +61,39 @@ void main() {
     when(() => mockAuthorizationCredentialsSerializer.toMap(expiredCredentials))
         .thenAnswer((_) => expiredCredentialsMap);
 
-    when(() => mockApiClient.post(uri, body: expiredCredentialsMap))
-        .thenAnswer((_) async => validCredentialsMap);
+    when(() {
+      return mockApiClient.post(
+        uri,
+        body: expiredCredentialsMap,
+        headers: headers,
+      );
+    }).thenAnswer((_) async => validCredentialsMap);
 
     when(() {
-      return mockAuthorizationCredentialsSerializer
-          .fromMap(validCredentialsMap);
+      return mockAuthorizationCredentialsSerializer.fromMap(
+        validCredentialsMap,
+      );
     }).thenAnswer((_) => validCredentials);
 
     final result = await apiAuthorizationRefresher.refresh(expiredCredentials);
+
+    verify(() {
+      return mockAuthorizationCredentialsSerializer.toMap(expiredCredentials);
+    }).called(1);
+
+    verify(() {
+      return mockApiClient.post(
+        uri,
+        body: expiredCredentialsMap,
+        headers: headers,
+      );
+    }).called(1);
+
+    verify(() {
+      return mockAuthorizationCredentialsSerializer.fromMap(
+        validCredentialsMap,
+      );
+    }).called(1);
 
     expect(result, validCredentials);
   });

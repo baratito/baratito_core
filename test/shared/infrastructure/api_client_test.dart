@@ -9,7 +9,7 @@ import 'package:baratito_core/src/shared/shared.dart';
 
 void main() {
   group('on get()', () {
-    final uri = Uri.dataFromString('https://example.com');
+    final uri = Uri.parse('https://example.com');
     test(
       'returns a Map<String, dynamic> body when answered with code 2xx',
       () async {
@@ -90,7 +90,7 @@ void main() {
   });
 
   group('on post()', () {
-    final uri = Uri.dataFromString('https://example.com');
+    final uri = Uri.parse('https://example.com');
     final requestBody = {'id': 1};
     test('returns a Response body when answered with code 2xx', () async {
       final successfulResponseJson = '{\"data\": \"Success!\"}';

@@ -2,6 +2,10 @@
 .dart_tool/
 .packages
 
+# Flutter
+.flutter-plugins
+.flutter-plugins-dependencies
+
 # Conventional directory for build outputs.
 build/
 
@@ -14,3 +18,6 @@ pubspec.lock
 
 # Apple stuff
 .DS_Store
+
+# fvm
+.fvm/

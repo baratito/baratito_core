@@ -1,6 +1,8 @@
 import 'package:injectable/injectable.dart';
 
+import 'package:baratito_core/src/configs/configs.dart';
+
 @singleton
 class ApiProviderBaseUrl {
-  String get url => 'https://api.baratito.app/api/';
+  String get url => Constants.apiBaseUrl;
 }

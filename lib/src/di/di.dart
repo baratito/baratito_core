@@ -6,7 +6,7 @@ import 'package:baratito_core/src/di/di.config.dart';
 final _getIt = GetIt.asNewInstance();
 
 @injectableInit
-GetIt setUpCoreDependencies(String environment) {
+Future<GetIt> setUpCoreDependencies(String environment) {
   return $initGetIt(
     _getIt,
     environment: environment,

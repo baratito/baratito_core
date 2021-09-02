@@ -10,18 +10,21 @@ dependencies:
   bloc: ^7.1.0
   clock: ^1.1.0
   equatable: ^2.0.3
+  flutter:
+    sdk: flutter
   get_it: ^7.2.0
   http: ^0.13.3
   injectable: ^1.5.0
   optional: ^6.1.0+1
   result_type: ^0.1.0
+  shared_preferences: ^2.0.7
 
 dev_dependencies:
   bloc_test: ^8.1.0
   build_runner: ^2.1.1
   injectable_generator:
     git:
-      url: git://github.com/pablanka/injectable.git
+      url: git://github.com/franpitri/injectable.git
       path: injectable_generator
   mocktail: ^0.1.4
   pedantic: ^1.11.1

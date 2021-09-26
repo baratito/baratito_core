@@ -8,7 +8,7 @@ import 'package:baratito_core/src/auth/infrastructure/persistence/authorization_
 import 'package:baratito_core/src/auth/infrastructure/persistence/local_authorization_provider.dart';
 import 'package:baratito_core/src/shared/shared.dart';
 
-@Singleton(as: LocalAuthorizationProvider)
+@LazySingleton(as: LocalAuthorizationProvider)
 class KeyValueStoreAuthorizationProvider implements LocalAuthorizationProvider {
   final KeyValueStore _keyValueStore;
   final AuthorizationCredentialsSerializer _authorizationCredentialsSerializer;

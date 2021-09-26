@@ -8,7 +8,7 @@ import 'package:baratito_core/src/shared/infrastructure/exceptions.dart';
 
 typedef RequestFunction = Future<Response> Function();
 
-@singleton
+@lazySingleton
 class ApiClient {
   final Client _client;
 

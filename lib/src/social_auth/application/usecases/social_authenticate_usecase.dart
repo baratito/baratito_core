@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:baratito_core/src/auth/auth.dart';
 import 'package:baratito_core/src/social_auth/domain/domain.dart';
 
-@singleton
+@lazySingleton
 class SocialAuthenticateUsecase
     extends AuthenticateUsecase<SocialAuthenticationCredentials> {
   SocialAuthenticateUsecase(

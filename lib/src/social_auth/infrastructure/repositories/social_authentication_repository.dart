@@ -9,7 +9,7 @@ import 'package:baratito_core/src/shared/shared.dart';
 typedef AuthenticationRepositoryAlias
     = AuthenticationRepository<SocialAuthenticationCredentials>;
 
-@Singleton(as: AuthenticationRepositoryAlias)
+@LazySingleton(as: AuthenticationRepositoryAlias)
 class SocialAuthenticationRepository
     implements AuthenticationRepository<SocialAuthenticationCredentials> {
   final RemoteSocialAuthenticationProvider _remoteSocialAuthenticationProvider;

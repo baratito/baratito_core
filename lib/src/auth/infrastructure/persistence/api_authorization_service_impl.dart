@@ -7,7 +7,7 @@ import 'package:baratito_core/src/auth/infrastructure/persistence/remote_authori
 import 'package:baratito_core/src/auth/infrastructure/persistence/local_authorization_provider.dart';
 import 'package:baratito_core/src/shared/shared.dart';
 
-@Singleton(as: ApiAuthorizationService)
+@LazySingleton(as: ApiAuthorizationService)
 class ApiAuthorizationServiceImpl implements ApiAuthorizationService {
   final LocalAuthorizationProvider _localAuthorizationProvider;
   final AuthorizationCredentialsExpirationChecker _expirationChecker;

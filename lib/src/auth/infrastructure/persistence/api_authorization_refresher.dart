@@ -6,7 +6,7 @@ import 'package:baratito_core/src/auth/infrastructure/persistence/remote_authori
 import 'package:baratito_core/src/configs/configs.dart';
 import 'package:baratito_core/src/shared/shared.dart';
 
-@Singleton(as: RemoteAuthorizationRefresher)
+@LazySingleton(as: RemoteAuthorizationRefresher)
 class ApiAuthorizationRefresher implements RemoteAuthorizationRefresher {
   final ApiClient _apiClient;
   final AuthorizationCredentialsSerializer _authorizationCredentialsSerializer;

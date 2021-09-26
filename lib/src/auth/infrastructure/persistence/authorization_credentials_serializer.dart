@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 
 import 'package:baratito_core/src/auth/domain/domain.dart';
 
-@singleton
+@lazySingleton
 class AuthorizationCredentialsSerializer {
   AuthorizationCredentials fromMap(Map<String, dynamic> map) {
     return AuthorizationCredentials(

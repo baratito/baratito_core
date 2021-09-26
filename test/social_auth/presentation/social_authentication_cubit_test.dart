@@ -46,7 +46,7 @@ void main() {
     );
 
     blocTest<SocialAuthenticationCubit, SocialAuthenticationState>(
-      'emits [SocialAuthenticationServerFailed] on a usecase call '
+      'emits [SocialAuthenticationFailed(ServerFailure)] on a usecase call '
       'that failed with ServerFailure()',
       build: () => socialAuthenticationCubit,
       act: (cubit) {
@@ -58,11 +58,11 @@ void main() {
 
         cubit.authenticate(authenticationCredentials);
       },
-      expect: () => const [SocialAuthenticationServerFailed()],
+      expect: () => const [SocialAuthenticationFailed(ServerFailure())],
     );
 
     blocTest<SocialAuthenticationCubit, SocialAuthenticationState>(
-      'emits [SocialAuthenticationConnectionFailed] on a usecase call '
+      'emits [SocialAuthenticationFailed(ConnectionFailure)] on a usecase call '
       'that failed with ConnectionFailure()',
       build: () => socialAuthenticationCubit,
       act: (cubit) {
@@ -74,7 +74,7 @@ void main() {
 
         cubit.authenticate(authenticationCredentials);
       },
-      expect: () => const [SocialAuthenticationConnectionFailed()],
+      expect: () => const [SocialAuthenticationFailed(ConnectionFailure())],
     );
   });
 }

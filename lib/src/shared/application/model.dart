@@ -2,9 +2,9 @@ import 'package:baratito_core/src/shared/domain/domain.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class Model<E extends Entity> extends Equatable {
-  final String id;
+  final int id;
 
-  Model(this.id);
+  const Model(this.id);
 
   E toEntity();
 

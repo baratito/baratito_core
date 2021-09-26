@@ -2,7 +2,7 @@ import 'package:baratito_core/baratito_core.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-@Singleton(as: KeyValueStore)
+@LazySingleton(as: KeyValueStore)
 class PreferencesKeyValueStore implements KeyValueStore {
   final SharedPreferences _preferences;
 

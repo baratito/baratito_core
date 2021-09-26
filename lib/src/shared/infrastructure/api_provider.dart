@@ -22,7 +22,7 @@ class ApiProvider<M extends Model> {
 
   String get resourceUrl => '${_apiBaseUrl.url}${_apiEndpoint.endpoint}';
 
-  Future<M> getById(String id) async {
+  Future<M> getById(int id) async {
     final uri = Uri.parse('$resourceUrl$id/');
     final headers = await _getAuthorizationHeaders();
     final response = await _apiClient.get(uri, headers: headers);

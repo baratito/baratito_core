@@ -2,7 +2,7 @@ import 'package:baratito_core/src/auth/domain/authorization_credentials.dart';
 import 'package:clock/clock.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@lazySingleton
 class AuthorizationCredentialsExpirationChecker {
   final Clock _clock;
 

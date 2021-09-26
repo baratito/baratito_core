@@ -6,7 +6,7 @@ import 'package:baratito_core/src/social_auth/domain/domain.dart';
 import 'package:baratito_core/src/social_auth/infrastructure/persistence/remote_social_authentication_provider.dart';
 import 'package:baratito_core/src/shared/shared.dart';
 
-@Singleton(as: RemoteSocialAuthenticationProvider)
+@LazySingleton(as: RemoteSocialAuthenticationProvider)
 class ApiSocialAuthenticationProvider
     implements RemoteSocialAuthenticationProvider {
   final ApiClient _apiClient;

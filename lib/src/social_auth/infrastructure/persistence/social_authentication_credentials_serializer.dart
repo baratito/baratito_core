@@ -6,7 +6,7 @@ import 'package:baratito_core/src/social_auth/domain/domain.dart';
 typedef AuthenticationCredentialsSerializerAlias
     = AuthenticationCredentialsSerializer<SocialAuthenticationCredentials>;
 
-@Singleton(as: AuthenticationCredentialsSerializerAlias)
+@LazySingleton(as: AuthenticationCredentialsSerializerAlias)
 class SocialAuthenticationCredentialsSerializer
     implements
         AuthenticationCredentialsSerializer<SocialAuthenticationCredentials> {

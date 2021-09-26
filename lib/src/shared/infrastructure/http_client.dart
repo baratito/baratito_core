@@ -3,6 +3,6 @@ import 'package:injectable/injectable.dart';
 
 @module
 abstract class HttpClientModule {
-  @singleton
+  @lazySingleton
   Client get httpClient => Client();
 }

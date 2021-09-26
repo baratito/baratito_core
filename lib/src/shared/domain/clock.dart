@@ -3,6 +3,6 @@ import 'package:injectable/injectable.dart';
 
 @module
 abstract class ClockModule {
-  @singleton
+  @lazySingleton
   Clock get clock => Clock();
 }

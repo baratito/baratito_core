@@ -18,15 +18,11 @@ class SocialAuthenticationCubit extends Cubit<SocialAuthenticationState> {
 
   Future<void> authenticate(SocialAuthenticationCredentials credentials) async {
     final result = await _socialAuthenticateUsecase(credentials: credentials);
-    if (result.isFailure) return _emitFailedState(result.failure);
-    emit(SocialAuthenticationSuccessful());
-  }
-
-  void _emitFailedState(ApplicationFailure failure) {
-    if (failure is ConnectionFailure) {
-      emit(SocialAuthenticationConnectionFailed());
-    } else if (failure is ServerFailure) {
-      emit(SocialAuthenticationServerFailed());
+    if (result.isFailure) {
+      final failure = result.failure;
+      emit(SocialAuthenticationFailed(failure));
+      return;
     }
+    emit(SocialAuthenticationSuccessful());
   }
 }

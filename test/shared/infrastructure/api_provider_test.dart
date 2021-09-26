@@ -30,7 +30,7 @@ void main() {
   const headers = {'Authorization': 'Bearer $token'};
 
   test('getById() returns expected model', () async {
-    final modelId = 'model-id';
+    final modelId = 1;
     final uri = Uri.parse(
       'https://api.baratito.app/api/test/$modelId/',
     );
@@ -70,7 +70,7 @@ class FakeApiAuthService extends Fake implements ApiAuthorizationService {
 
 class FakeModel extends Fake implements Model {
   @override
-  final String id;
+  final int id;
 
   FakeModel({required this.id});
 }

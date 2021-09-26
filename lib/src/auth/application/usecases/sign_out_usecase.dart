@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 
 import 'package:baratito_core/src/auth/application/repositories/repositories.dart';
 
-@singleton
+@lazySingleton
 class SignOutUsecase {
   final AuthorizationRepository _authorizationRepository;
 

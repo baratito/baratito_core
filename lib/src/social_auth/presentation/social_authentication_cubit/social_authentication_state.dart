@@ -15,10 +15,11 @@ class SocialAuthenticationSuccessful extends SocialAuthenticationState {
   const SocialAuthenticationSuccessful();
 }
 
-class SocialAuthenticationServerFailed extends SocialAuthenticationState {
-  const SocialAuthenticationServerFailed();
-}
+class SocialAuthenticationFailed extends SocialAuthenticationState {
+  final ApplicationFailure failure;
 
-class SocialAuthenticationConnectionFailed extends SocialAuthenticationState {
-  const SocialAuthenticationConnectionFailed();
+  const SocialAuthenticationFailed(this.failure);
+
+  @override
+  List<Object> get props => [...super.props, failure];
 }

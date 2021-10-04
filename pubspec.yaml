@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   get_it: ^7.2.0
+  google_sign_in: ^5.1.1
   http: ^0.13.3
   injectable: ^1.5.0
   optional: ^6.1.0+1

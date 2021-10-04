@@ -9,13 +9,16 @@ import 'package:baratito_core/src/shared/shared.dart';
 void main() {
   late MockGetAuthorizationCredentialsUsecase
       mockGetAuthorizationCredentialsUsecase;
+  late MockSignOutUsecase mockSignOutUsecase;
   late AuthorizationCubit authorizationCubit;
 
   setUp(() {
     mockGetAuthorizationCredentialsUsecase =
         MockGetAuthorizationCredentialsUsecase();
+    mockSignOutUsecase = MockSignOutUsecase();
     authorizationCubit = AuthorizationCubit(
       mockGetAuthorizationCredentialsUsecase,
+      mockSignOutUsecase,
     );
   });
 
@@ -51,7 +54,21 @@ void main() {
       expect: () => const [AuthorizationFailed()],
     );
   });
+
+  group('on signOut()', () {
+    blocTest<AuthorizationCubit, AuthorizationState>(
+      'emits [SignOutSuccessful] on a successful usecase call',
+      build: () => authorizationCubit,
+      act: (cubit) {
+        when(() => mockSignOutUsecase()).thenAnswer((_) async {});
+        cubit.signOut();
+      },
+      expect: () => const [SignOutSuccessful()],
+    );
+  });
 }
 
 class MockGetAuthorizationCredentialsUsecase extends Mock
     implements GetAuthorizationCredentialsUsecase {}
+
+class MockSignOutUsecase extends Mock implements SignOutUsecase {}

@@ -18,3 +18,7 @@ class AuthorizationSuccessful extends AuthorizationState {
 class AuthorizationFailed extends AuthorizationState {
   const AuthorizationFailed();
 }
+
+class SignOutSuccessful extends AuthorizationState {
+  const SignOutSuccessful();
+}

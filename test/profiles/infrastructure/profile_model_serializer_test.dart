@@ -27,9 +27,4 @@ void main() {
     final result = profileModelSerializer.fromMap(profileMap);
     expect(result, profileModel);
   });
-
-  test('toMap converts properly', () {
-    final result = profileModelSerializer.toMap(profileModel);
-    expect(result, profileMap);
-  });
 }

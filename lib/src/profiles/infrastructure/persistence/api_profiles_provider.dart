@@ -1,30 +1,34 @@
 import 'package:injectable/injectable.dart';
 
 import 'package:baratito_core/src/profiles/application/application.dart';
+import 'package:baratito_core/src/profiles/infrastructure/persistence/api_profiles_provider_endpoint.dart';
+import 'package:baratito_core/src/profiles/infrastructure/persistence/profile_model_serializer.dart';
 import 'package:baratito_core/src/profiles/infrastructure/persistence/remote_profiles_provider.dart';
 import 'package:baratito_core/src/shared/shared.dart';
 
 @LazySingleton(as: RemoteProfilesProvider)
 class ApiProfilesProvider implements RemoteProfilesProvider {
-  // TODO: replace all of tfhis with an ApiProvider once we have a proper
-  // profile endpoint
   final ApiClient _apiClient;
+  final ApiProviderBaseUrl _apiProviderBaseUrl;
+  final ApiProfilesProviderEndpoint _profilesEndpoint;
   final ApiAuthorizationService _authService;
-  final ModelSerializer<ProfileModel> _modelSerializer;
+  final ProfileModelSerializer _modelSerializer;
 
   ApiProfilesProvider(
     this._apiClient,
+    this._apiProviderBaseUrl,
+    this._profilesEndpoint,
     this._authService,
     this._modelSerializer,
   );
 
   @override
   Future<ProfileModel> getAuthenticatedUserProfile() async {
-    final endpoint = 'https://api.baratito.app/api/profile/';
+    final endpoint = '${_apiProviderBaseUrl.url}${_profilesEndpoint.endpoint}';
     final uri = Uri.parse(endpoint);
 
     final token = await _authService.getToken();
-    final headers = {'Authorization': 'Bearer $token'};
+    final headers = _apiClient.buildAuthorizationHeaders(token);
 
     final profileMap = await _apiClient.get(uri, headers: headers);
     final profileModel = _modelSerializer.fromMap(profileMap);

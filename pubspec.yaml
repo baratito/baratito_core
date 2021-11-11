@@ -9,10 +9,12 @@ environment:
 dependencies:
   bloc: ^7.1.0
   clock: ^1.1.0
+  collection: ^1.15.0
   equatable: ^2.0.3
   flutter:
     sdk: flutter
   get_it: ^7.2.0
+  google_maps_webservice: ^0.0.20-nullsafety.5
   google_sign_in: ^5.1.1
   http: ^0.13.3
   injectable: ^1.5.0

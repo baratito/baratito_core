@@ -1,5 +1,6 @@
 // If categories start changing we should refactor this into a proper entity.
 enum Category {
+  none,
   frozenFood,
   groceryProducts,
   babyProducts,

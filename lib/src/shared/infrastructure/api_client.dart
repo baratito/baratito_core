@@ -32,10 +32,39 @@ class ApiClient {
     Map<String, dynamic>? body,
     Map<String, String>? headers,
   }) async {
+    final defaultHeaders = {'Content-Type': 'application/json'};
+    if (headers != null && !headers.containsKey('Content-Type')) {
+      headers.addAll(defaultHeaders);
+    }
     final encodedRequestBody = json.encode(body);
     final response = await _makeRequest(
       () {
         return _client.post(
+          uri,
+          headers: headers,
+          body: encodedRequestBody,
+        );
+      },
+    );
+    if (response.statusCode >= 300) {
+      throw _parseResponseError(response);
+    }
+    return _parseResponseBody(response);
+  }
+
+  Future<Map<String, dynamic>> patch(
+    Uri uri, {
+    Map<String, dynamic>? body,
+    Map<String, String>? headers,
+  }) async {
+    final defaultHeaders = {'Content-Type': 'application/json'};
+    if (headers != null && !headers.containsKey('Content-Type')) {
+      headers.addAll(defaultHeaders);
+    }
+    final encodedRequestBody = json.encode(body);
+    final response = await _makeRequest(
+      () {
+        return _client.patch(
           uri,
           headers: headers,
           body: encodedRequestBody,

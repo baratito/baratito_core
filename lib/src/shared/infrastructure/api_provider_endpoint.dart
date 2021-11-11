@@ -1,5 +1,5 @@
 abstract class ApiProviderEndpoint {
   final String endpoint;
 
-  ApiProviderEndpoint(this.endpoint);
+  const ApiProviderEndpoint(this.endpoint);
 }

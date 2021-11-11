@@ -1,7 +1,7 @@
 import 'package:baratito_core/src/profiles/domain/domain.dart';
 import 'package:baratito_core/src/shared/shared.dart';
 
-class ProfileModel extends Model<Profile> {
+class ProfileModel extends EntityModel<Profile> {
   final String avatarUrl;
   final String firstName;
   final String lastName;
@@ -14,16 +14,6 @@ class ProfileModel extends Model<Profile> {
     required this.lastName,
     required this.email,
   }) : super(id);
-
-  factory ProfileModel.fromEntity(Profile profile) {
-    return ProfileModel(
-      id: profile.id,
-      avatarUrl: profile.avatarUrl,
-      firstName: profile.firstName,
-      lastName: profile.lastName,
-      email: profile.email,
-    );
-  }
 
   @override
   Profile toEntity() {

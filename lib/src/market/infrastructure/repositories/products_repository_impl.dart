@@ -27,6 +27,18 @@ class ProductsRepositoryImpl implements ProductsRepository {
     }
   }
 
+  @override
+  Future<Result<List<ProductModel>, ApplicationFailure>>
+      getRecommendations() async {
+    try {
+      final results = await _provider.getRecommendations();
+      return Success(results);
+    } on Exception catch (exception) {
+      final failure = _parseException(exception);
+      return Failure(failure);
+    }
+  }
+
   ApplicationFailure _parseException(Exception exception) {
     if (exception is ServerException) {
       return ServerFailure();

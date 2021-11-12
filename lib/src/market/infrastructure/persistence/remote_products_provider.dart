@@ -8,4 +8,5 @@ abstract class RemoteProductsProvider {
     String query, [
     Category? category,
   ]);
+  Future<List<ProductModel>> getRecommendations();
 }

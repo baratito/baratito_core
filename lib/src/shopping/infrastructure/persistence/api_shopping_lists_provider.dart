@@ -2,6 +2,8 @@ import 'package:injectable/injectable.dart';
 
 import 'package:baratito_core/src/shopping/domain/domain.dart';
 import 'package:baratito_core/src/shopping/application/application.dart';
+import 'package:baratito_core/src/shopping/infrastructure/persistence/purchase_list_model_serializer.dart';
+import 'package:baratito_core/src/shopping/infrastructure/persistence/purchase_settings_serializer.dart';
 import 'package:baratito_core/src/shopping/infrastructure/persistence/shopping_list_item_model_serializer.dart';
 import 'package:baratito_core/src/shopping/infrastructure/persistence/api_shopping_lists_provider_endpoint.dart';
 import 'package:baratito_core/src/shopping/infrastructure/persistence/remote_shopping_lists_provider.dart';
@@ -22,6 +24,8 @@ class ApiShoppingListsProvider implements RemoteShoppingListsProvider {
   final ShoppingListUpdateModelSerializer _shoppingListUpdateModelSerializer;
   final ShoppingListItemUpdateModelSerializer _itemUpdateModelSerializer;
   final ShoppingListItemModelSerializer _itemModelSerializer;
+  final PurchaseSettingsSerializer _purchaseSettingsSerializer;
+  final PurchaseListModelSerializer _purchaseListModelSerializer;
 
   ApiShoppingListsProvider(
     this._apiClient,
@@ -33,6 +37,8 @@ class ApiShoppingListsProvider implements RemoteShoppingListsProvider {
     this._shoppingListUpdateModelSerializer,
     this._itemUpdateModelSerializer,
     this._itemModelSerializer,
+    this._purchaseSettingsSerializer,
+    this._purchaseListModelSerializer,
   );
 
   @override
@@ -135,6 +141,26 @@ class ApiShoppingListsProvider implements RemoteShoppingListsProvider {
     final shoppingListItemModels = _getShoppingListItemsResultsList(response);
 
     return shoppingListItemModels;
+  }
+
+  @override
+  Future<PurchaseListModel> startPurchase(
+    ShoppingList shoppingList,
+    PurchaseSettings purchaseSettings,
+  ) async {
+    final baseUrl =
+        '${_apiProviderBaseUrl.url}${_shoppingListsEndpoint.endpoint}';
+    final endpoint = '$baseUrl${shoppingList.id}/buy';
+    final uri = Uri.parse(endpoint);
+    final token = await _apiAuthorizationService.getToken();
+    final headers = _apiClient.buildAuthorizationHeaders(token);
+
+    final body = _purchaseSettingsSerializer.toMap(purchaseSettings);
+
+    final modelMap = await _apiClient.post(uri, body: body, headers: headers);
+    final purchaseListModel = _purchaseListModelSerializer.fromMap(modelMap);
+
+    return purchaseListModel;
   }
 
   List<ShoppingListModel> _getShoppingListResultsList(

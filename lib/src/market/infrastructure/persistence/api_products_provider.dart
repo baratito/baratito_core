@@ -54,6 +54,20 @@ class RemoteProductsProviderImpl implements RemoteProductsProvider {
     return resultsPagedList;
   }
 
+  @override
+  Future<List<ProductModel>> getRecommendations() async {
+    final endpoint =
+        '${_apiProviderBaseUrl.url}${_productsEndpoint.endpoint}recommendations';
+    final uri = Uri.parse(endpoint);
+
+    final token = await _apiAuthorizationService.getToken();
+    final headers = _apiClient.buildAuthorizationHeaders(token);
+
+    final productsMap = await _apiClient.get(uri, headers: headers);
+    final productModels = _getResultsList(productsMap);
+    return productModels;
+  }
+
   List<ProductModel> _getResultsList(Map<String, dynamic> response) {
     final jsonResults = response['results'] as List;
     final models = jsonResults.map<ProductModel>((modelMap) {

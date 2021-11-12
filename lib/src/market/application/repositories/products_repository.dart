@@ -10,4 +10,5 @@ abstract class ProductsRepository {
     String query, [
     Category? category,
   ]);
+  Future<Result<List<ProductModel>, ApplicationFailure>> getRecommendations();
 }

@@ -94,6 +94,23 @@ class ShoppingListsRespositoryImpl implements ShoppingListsRepository {
     }
   }
 
+  @override
+  Future<Result<PurchaseListModel, ApplicationFailure>> startPurchase(
+    ShoppingList shoppingList,
+    PurchaseSettings purchaseSettings,
+  ) async {
+    try {
+      final purchaseListModel = await _remoteProvider.startPurchase(
+        shoppingList,
+        purchaseSettings,
+      );
+      return Success(purchaseListModel);
+    } on Exception catch (exception) {
+      final failure = _parseException(exception);
+      return Failure(failure);
+    }
+  }
+
   ApplicationFailure _parseException(Exception exception) {
     if (exception is ServerException) {
       return ServerFailure();

@@ -20,4 +20,8 @@ abstract class ShoppingListsRepository {
   Future<Result<List<ShoppingListItemModel>, ApplicationFailure>> getItems(
     ShoppingList shoppingList,
   );
+  Future<Result<PurchaseListModel, ApplicationFailure>> startPurchase(
+    ShoppingList shoppingList,
+    PurchaseSettings purchaseSettings,
+  );
 }

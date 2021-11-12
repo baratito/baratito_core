@@ -11,4 +11,8 @@ abstract class RemoteShoppingListsProvider {
     List<ShoppingListItemUpdateModel> models,
   );
   Future<List<ShoppingListItemModel>> getItems(ShoppingList shoppingList);
+  Future<PurchaseListModel> startPurchase(
+    ShoppingList shoppingList,
+    PurchaseSettings purchaseSettings,
+  );
 }

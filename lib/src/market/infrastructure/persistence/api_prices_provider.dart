@@ -8,14 +8,14 @@ import 'package:baratito_core/src/market/infrastructure/persistence/remote_price
 import 'package:baratito_core/src/shared/shared.dart';
 
 @LazySingleton(as: RemotePricesProvider)
-class RemotePricesProviderImpl implements RemotePricesProvider {
+class ApiPricesProvider implements RemotePricesProvider {
   final ApiClient _apiClient;
   final ApiProviderBaseUrl _apiProviderBaseUrl;
   final ApiPricesProviderEndpoint _pricesEndpoint;
   final ApiAuthorizationService _apiAuthorizationService;
   final PriceModelSerializer _modelSerializer;
 
-  RemotePricesProviderImpl(
+  ApiPricesProvider(
     this._apiClient,
     this._apiProviderBaseUrl,
     this._pricesEndpoint,

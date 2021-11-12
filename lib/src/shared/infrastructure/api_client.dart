@@ -29,7 +29,7 @@ class ApiClient {
 
   Future<Map<String, dynamic>> post(
     Uri uri, {
-    Map<String, dynamic>? body,
+    dynamic body,
     Map<String, String>? headers,
   }) async {
     final defaultHeaders = {'Content-Type': 'application/json'};
@@ -68,6 +68,24 @@ class ApiClient {
           uri,
           headers: headers,
           body: encodedRequestBody,
+        );
+      },
+    );
+    if (response.statusCode >= 300) {
+      throw _parseResponseError(response);
+    }
+    return _parseResponseBody(response);
+  }
+
+  Future<Map<String, dynamic>> delete(
+    Uri uri, {
+    Map<String, String>? headers,
+  }) async {
+    final response = await _makeRequest(
+      () {
+        return _client.delete(
+          uri,
+          headers: headers,
         );
       },
     );

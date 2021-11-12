@@ -1,3 +1,4 @@
+export 'api_prices_provider.dart';
 export 'api_prices_provider_endpoint.dart';
 export 'api_products_provider.dart';
 export 'api_products_provider_endpoint.dart';

@@ -20,4 +20,20 @@ class ProductModelSerializer {
     if (value == null) return Category.none;
     return Category.values[value];
   }
+
+  Map<String, dynamic> toMap(ProductModel model) {
+    return {
+      'id': model.id,
+      'brand': model.brand,
+      'category': _categoryToInt(model.category),
+      'imageUrl': model.imageUrl,
+      'name': model.name,
+      'presentation': model.presentation,
+    };
+  }
+
+  int? _categoryToInt(Category category) {
+    if (category == Category.none) return null;
+    return category.index;
+  }
 }

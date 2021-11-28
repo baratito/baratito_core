@@ -71,6 +71,13 @@ class ShoppingListsCubit extends Cubit<ShoppingListsState> {
     }
   }
 
+  Future<void> replace({required ShoppingList shoppingList}) async {
+    if (state is! ShoppingListsData) return;
+    if (state is ShoppingListsCreating) return;
+    final shoppingLists = _replaceFromCurrentLists(shoppingList);
+    emit(ShoppingListsLoaded(shoppingLists));
+  }
+
   List<ShoppingList> _appendToCurrentLists(ShoppingList shoppingList) {
     final currentLists = (state as ShoppingListsData).shoppingLists;
     return [...currentLists, shoppingList];
@@ -78,9 +85,17 @@ class ShoppingListsCubit extends Cubit<ShoppingListsState> {
 
   List<ShoppingList> _deleteFromCurrentLists(ShoppingList shoppingList) {
     final currentLists = (state as ShoppingListsData).shoppingLists;
-    final updatedLists = List<ShoppingList>.from(
-      currentLists,
-    )..remove(shoppingList);
+    final updatedLists = List<ShoppingList>.from(currentLists)
+      ..remove(shoppingList);
+    return updatedLists;
+  }
+
+  List<ShoppingList> _replaceFromCurrentLists(ShoppingList shoppingList) {
+    final currentLists = (state as ShoppingListsData).shoppingLists;
+    final updatedLists = currentLists.map((list) {
+      if (list.id == shoppingList.id) return shoppingList;
+      return list;
+    }).toList();
     return updatedLists;
   }
 }

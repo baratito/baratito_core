@@ -1,12 +1,12 @@
-import 'package:baratito_core/src/market/market.dart';
-import 'package:baratito_core/src/shared/shared.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
+import 'package:optional/optional.dart';
 
 import 'package:baratito_core/src/shopping/application/application.dart';
 import 'package:baratito_core/src/shopping/domain/domain.dart';
-import 'package:optional/optional.dart';
+import 'package:baratito_core/src/market/market.dart';
+import 'package:baratito_core/src/shared/shared.dart';
 
 part 'shopping_list_items_state.dart';
 

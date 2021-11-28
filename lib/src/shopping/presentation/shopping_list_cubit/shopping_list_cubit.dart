@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:baratito_core/src/shared/shared.dart';
 import 'package:baratito_core/src/shopping/application/application.dart';
 import 'package:baratito_core/src/shopping/domain/domain.dart';
+import 'package:baratito_core/src/shopping/presentation/shopping_lists_cubit/shopping_lists_cubit.dart';
 
 part 'shopping_list_state.dart';
 
@@ -15,7 +16,13 @@ class ShoppingListCubit extends Cubit<ShoppingListState> {
   ShoppingListCubit(this._updateShoppingListNameUsecase)
       : super(ShoppingListInitial());
 
-  void load({required ShoppingList shoppingList}) {
+  late ShoppingListsCubit _shoppingListsCubit;
+
+  void load({
+    required ShoppingListsCubit shoppingListsCubit,
+    required ShoppingList shoppingList,
+  }) {
+    _shoppingListsCubit = shoppingListsCubit;
     emit(ShoppingListLoaded(shoppingList));
   }
 
@@ -31,6 +38,8 @@ class ShoppingListCubit extends Cubit<ShoppingListState> {
     if (result.isFailure) {
       emit(ShoppingListFailed(result.failure));
       emit(_state);
+      return;
     }
+    await _shoppingListsCubit.replace(shoppingList: result.success);
   }
 }

@@ -1,3 +1,4 @@
+export 'monthly_purchase_summaries_cubit/monthly_purchase_summaries_cubit.dart';
 export 'purchase_cubit/purchase_cubit.dart';
 export 'shopping_list_cubit/shopping_list_cubit.dart';
 export 'shopping_list_items_cubit/shopping_list_items_cubit.dart';

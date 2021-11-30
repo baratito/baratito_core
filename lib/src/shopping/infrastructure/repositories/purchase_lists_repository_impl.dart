@@ -13,12 +13,25 @@ class PurchaseListRepositoryImpl implements PurchaseListsRepository {
   PurchaseListRepositoryImpl(this._remoteProvider);
 
   @override
-  Future<Result<PurchaseListModel, ApplicationFailure>> complete(
+  Future<Result<PurchaseListModel, ApplicationFailure>> completePurchase(
     PurchaseList purchaseList,
   ) async {
     try {
-      final purchaseListModel = await _remoteProvider.complete(purchaseList);
+      final purchaseListModel =
+          await _remoteProvider.completePurchase(purchaseList);
       return Success(purchaseListModel);
+    } on Exception catch (exception) {
+      final failure = _parseException(exception);
+      return Failure(failure);
+    }
+  }
+
+  @override
+  Future<Result<List<MonthlyPurchaseSummaryModel>, ApplicationFailure>>
+      getSummaries() async {
+    try {
+      final summaryModels = await _remoteProvider.getSummaries();
+      return Success(summaryModels);
     } on Exception catch (exception) {
       final failure = _parseException(exception);
       return Failure(failure);

@@ -14,7 +14,7 @@ class CompletePurchaseUsecase {
   Future<Result<PurchaseList, ApplicationFailure>> call({
     required PurchaseList purchaseList,
   }) async {
-    final result = await _repository.complete(purchaseList);
+    final result = await _repository.completePurchase(purchaseList);
     if (result.isFailure) return Failure(result.failure);
     final purchaseListModel = result.success;
     final updatedPurchaseList = purchaseListModel.toEntity();

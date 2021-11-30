@@ -2,6 +2,7 @@ export 'api_purchase_list_items_provider.dart';
 export 'api_purchase_list_items_provider_endpoint.dart';
 export 'api_purchase_lists_provider.dart';
 export 'api_purchase_lists_provider_endpoint.dart';
+export 'api_purchase_summary_provider_endpoint.dart';
 export 'api_shopping_lists_provider.dart';
 export 'api_shopping_lists_provider_endpoint.dart';
 export 'purchase_list_establishment_model_serializer.dart';

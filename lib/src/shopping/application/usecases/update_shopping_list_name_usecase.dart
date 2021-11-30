@@ -1,8 +1,8 @@
-import 'package:baratito_core/src/shopping/application/models/models.dart';
 import 'package:result_type/result_type.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:baratito_core/src/shared/shared.dart';
+import 'package:baratito_core/src/shopping/application/models/models.dart';
 import 'package:baratito_core/src/shopping/application/repositories/repositories.dart';
 import 'package:baratito_core/src/shopping/domain/domain.dart';
 

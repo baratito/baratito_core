@@ -13,6 +13,9 @@ class PurchaseList extends Entity {
   final double estimatedValue;
   final PurchaseListStatus status;
   final List<PurchaseListItemEstablishment> establishments;
+  final LatLongBoundaries boundaries;
+  final String polyline;
+  final LatLong startingPoint;
 
   PurchaseList({
     required int id,
@@ -22,6 +25,9 @@ class PurchaseList extends Entity {
     required this.estimatedValue,
     required this.status,
     required this.establishments,
+    required this.boundaries,
+    required this.polyline,
+    required this.startingPoint,
   }) : super(id);
 
   @override
@@ -34,6 +40,9 @@ class PurchaseList extends Entity {
       estimatedValue,
       status,
       establishments,
+      boundaries,
+      polyline,
+      startingPoint,
     ];
   }
 }

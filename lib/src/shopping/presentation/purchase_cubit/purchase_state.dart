@@ -26,17 +26,41 @@ class PurchaseSettingsLoaded extends PurchaseSettingsData {
   ) : super(shoppingList, purchaseSettings);
 }
 
-class PurchaseLoaded extends PurchaseSettingsData {
+abstract class PurchaseData extends PurchaseSettingsData {
   final PurchaseList purchaseList;
 
-  PurchaseLoaded(
+  PurchaseData(
     this.purchaseList,
     ShoppingList shoppingList,
     PurchaseSettings purchaseSettings,
   ) : super(shoppingList, purchaseSettings);
 
   @override
-  List<Object> get props => [purchaseList, shoppingList, purchaseSettings];
+  List<Object> get props => [...super.props, purchaseList];
+}
+
+class PurchaseLoaded extends PurchaseData {
+  PurchaseLoaded(
+    PurchaseList purchaseList,
+    ShoppingList shoppingList,
+    PurchaseSettings purchaseSettings,
+  ) : super(purchaseList, shoppingList, purchaseSettings);
+}
+
+class PurchaseCompleting extends PurchaseData {
+  PurchaseCompleting(
+    PurchaseList purchaseList,
+    ShoppingList shoppingList,
+    PurchaseSettings purchaseSettings,
+  ) : super(purchaseList, shoppingList, purchaseSettings);
+}
+
+class PurchaseCompleted extends PurchaseData {
+  PurchaseCompleted(
+    PurchaseList purchaseList,
+    ShoppingList shoppingList,
+    PurchaseSettings purchaseSettings,
+  ) : super(purchaseList, shoppingList, purchaseSettings);
 }
 
 class PurchaseFailed extends PurchaseState {

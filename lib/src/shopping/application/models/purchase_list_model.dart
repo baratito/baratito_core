@@ -7,6 +7,9 @@ class PurchaseListModel extends EntityModel<PurchaseList> {
   final double estimatedValue;
   final PurchaseListStatus status;
   final List<PurchaseListItemEstablishmentModel> establishments;
+  final LatLongBoundaries boundaries;
+  final String polyline;
+  final LatLong startingPoint;
 
   PurchaseListModel({
     required int id,
@@ -16,6 +19,9 @@ class PurchaseListModel extends EntityModel<PurchaseList> {
     required this.estimatedValue,
     required this.status,
     required this.establishments,
+    required this.boundaries,
+    required this.polyline,
+    required this.startingPoint,
   }) : super(id);
 
   @override
@@ -30,6 +36,9 @@ class PurchaseListModel extends EntityModel<PurchaseList> {
       establishments: establishments
           .map<PurchaseListItemEstablishment>((model) => model.toEntity())
           .toList(),
+      boundaries: boundaries,
+      polyline: polyline,
+      startingPoint: startingPoint,
     );
   }
 
@@ -43,6 +52,9 @@ class PurchaseListModel extends EntityModel<PurchaseList> {
       estimatedValue,
       status,
       establishments,
+      boundaries,
+      polyline,
+      startingPoint,
     ];
   }
 }

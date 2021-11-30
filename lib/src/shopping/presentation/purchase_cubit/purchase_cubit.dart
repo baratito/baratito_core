@@ -11,8 +11,12 @@ part 'purchase_state.dart';
 @injectable
 class PurchaseCubit extends Cubit<PurchaseState> {
   final StartPurchaseUsecase _startPurchaseUsecase;
+  final CompletePurchaseUsecase _completePurchaseUsecase;
 
-  PurchaseCubit(this._startPurchaseUsecase) : super(PurchaseInitial());
+  PurchaseCubit(
+    this._startPurchaseUsecase,
+    this._completePurchaseUsecase,
+  ) : super(PurchaseInitial());
 
   void load({required ShoppingList shoppingList}) {
     final defaultSettings = PurchaseSettings(
@@ -57,5 +61,21 @@ class PurchaseCubit extends Cubit<PurchaseState> {
     }
     final purchaseList = result.success;
     emit(PurchaseLoaded(purchaseList, shoppingList, currentSettings));
+  }
+
+  Future<void> completePurchase() async {
+    if (state is! PurchaseLoaded) return;
+    final _state = state as PurchaseLoaded;
+    final purchaseList = _state.purchaseList;
+    final shoppingList = _state.shoppingList;
+    final currentSettings = _state.purchaseSettings;
+    emit(PurchaseCompleting(purchaseList, shoppingList, currentSettings));
+    final result = await _completePurchaseUsecase(purchaseList: purchaseList);
+    if (result.isFailure) {
+      emit(PurchaseFailed(result.failure));
+      emit(_state);
+      return;
+    }
+    emit(PurchaseCompleted(purchaseList, shoppingList, currentSettings));
   }
 }

@@ -117,6 +117,11 @@ class ApiClient {
     final httpStatusCode = response.statusCode;
     if (httpStatusCode >= 500) return ServerException();
     if (httpStatusCode == 404) return NotFoundException();
+    if (httpStatusCode == 400) {
+      final body = _parseResponseBody(response);
+      final description = body['detail'];
+      return ClientException(description);
+    }
     return UnhandledNetworkException();
   }
 }

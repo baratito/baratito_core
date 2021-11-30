@@ -18,3 +18,9 @@ class NotFoundFailure extends ApplicationFailure {
 class ConnectionFailure extends ApplicationFailure {
   const ConnectionFailure();
 }
+
+class ClientFailure extends ApplicationFailure {
+  final String description;
+
+  const ClientFailure(this.description);
+}

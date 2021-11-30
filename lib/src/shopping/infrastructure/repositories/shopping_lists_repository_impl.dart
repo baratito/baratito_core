@@ -118,6 +118,8 @@ class ShoppingListsRespositoryImpl implements ShoppingListsRepository {
       return ConnectionFailure();
     } else if (exception is NotFoundException) {
       return NotFoundFailure();
+    } else if (exception is ClientException) {
+      return ClientFailure(exception.description);
     }
 
     throw Exception('Unexpected exception');

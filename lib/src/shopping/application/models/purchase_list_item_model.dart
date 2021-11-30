@@ -5,12 +5,14 @@ class PurchaseListItemModel extends EntityModel<PurchaseListItem> {
   final String name;
   final double price;
   final int quantity;
+  final bool isBought;
 
   PurchaseListItemModel({
     required int id,
     required this.name,
     required this.price,
     required this.quantity,
+    required this.isBought,
   }) : super(id);
 
   @override
@@ -20,9 +22,18 @@ class PurchaseListItemModel extends EntityModel<PurchaseListItem> {
       name: name,
       price: price,
       quantity: quantity,
+      isBought: isBought,
     );
   }
 
   @override
-  List<Object?> get props => [...super.props, name, price, quantity];
+  List<Object?> get props {
+    return [
+      ...super.props,
+      name,
+      price,
+      quantity,
+      isBought,
+    ];
+  }
 }

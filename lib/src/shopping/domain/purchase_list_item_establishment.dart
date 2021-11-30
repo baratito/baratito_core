@@ -12,6 +12,17 @@ class PurchaseListItemEstablishment extends Entity {
     required this.items,
   }) : super(id);
 
+  PurchaseListItemEstablishment copyWith({
+    Establishment? establishment,
+    List<PurchaseListItem>? items,
+  }) {
+    return PurchaseListItemEstablishment(
+      id: id,
+      establishment: establishment ?? this.establishment,
+      items: items ?? this.items,
+    );
+  }
+
   @override
   List<Object?> get props => [...super.props, establishment, items];
 }

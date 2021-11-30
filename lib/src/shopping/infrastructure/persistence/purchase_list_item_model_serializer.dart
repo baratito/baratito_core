@@ -10,6 +10,7 @@ class PurchaseListItemModelSerializer {
       name: map['name'],
       price: map['price'],
       quantity: map['quantity'],
+      isBought: map['is_bought'],
     );
   }
 }
